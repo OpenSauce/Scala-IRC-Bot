@@ -1,21 +1,19 @@
 import java.io._
 import java.net._
 
-class InputMessageHandler(inputStream: BufferedReader, outputHandler: OutputMessageHandler) extends MessageHandler {
+class InputMessageHandler(inputStream: BufferedReader, outputHandler: OutputMessageHandler) {
   var isRunning: Boolean = false
-  case object Stop
   
-    
-  def startActor {
-    this.start
+  def startListening {
     isRunning = true
+    listenLoop
   }
   
   def stopActor {
      isRunning = false
   }
   
-  def act {
+  def listenLoop {
     while(isRunning) {
       val line = inputStream.readLine
       if(line != null) {
@@ -28,7 +26,7 @@ class InputMessageHandler(inputStream: BufferedReader, outputHandler: OutputMess
     println(inputLine)
     val splitString = inputLine.split(" ")
     if(splitString(0).equalsIgnoreCase("PING")) {
-      outputHandler.sendMessage("PONG " + splitString(1))
+      outputHandler ! new Message("PONG " + splitString(1))
     }
   }
   

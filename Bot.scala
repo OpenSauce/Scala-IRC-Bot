@@ -6,7 +6,6 @@ import scala.actors.Actor._
 class Bot(serverAddress: String = "irc.w3.org", serverPort: Int = 6667, nick: String = "DickBot") {
   var outputMessageHandler: OutputMessageHandler = _
   var inputMessageHandler: InputMessageHandler = _
-  case object Stop
   
   def connectToServer {
     val serverSocket = new Socket(serverAddress, serverPort)
@@ -22,7 +21,9 @@ class Bot(serverAddress: String = "irc.w3.org", serverPort: Int = 6667, nick: St
     outputMessageHandler.sendMessage("NICK " + this.nick)
     outputMessageHandler.sendMessage("USER " + this.nick + " DickBot DickBot Dickbot")
     outputMessageHandler.sendMessage("JOIN #ectest900")
-    inputMessageHandler.startActor
+      
+    outputMessageHandler.start  
+    inputMessageHandler.startListening
   }
    
 }
