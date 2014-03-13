@@ -1,7 +1,7 @@
 
 object ScalaBot {
   def main(args: Array[String]) {
-    val bot = new Bot("irc.w3.org", 6667, "DickBot")
+    val bot = new Bot("irc.w3.org", 6667, "DickLord")
     bot.connectToServer
   }
 }

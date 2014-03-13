@@ -1,4 +1,5 @@
+import java.util.ArrayList
 
-case class Message(contents: String) {
+abstract class Message(command: String, destination: String, trailing: String, messageParameters: ArrayList[String]) {
   
 }
