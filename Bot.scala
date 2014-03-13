@@ -3,7 +3,7 @@ import java.net._
 import scala.actors.Actor
 import scala.actors.Actor._
 
-class Bot(serverAddress: String = "irc.w3.org", serverPort: Int = 6667, nick: String = "DickBot") {
+class Bot(serverAddress: String = "irc.w3.org", serverPort: Int = 6667, val nick: String = "DickBot") {
   var outboundMessageHandler: OutboundMessageHandler = _
   var inboundMessageHandler: InboundMessageHandler = _
   
